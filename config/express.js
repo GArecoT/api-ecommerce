@@ -10,6 +10,6 @@ module.exports = () => {
 
   // MIDDLEWARES
   app.use(bodyParser.json());
-  require("../api/routes/getProdutos.ts")(app);
+  require("../api/routes/produtos.ts")(app);
   return app;
 };
