@@ -15,8 +15,14 @@ module.exports = async (app) => {
     return res.json(response);
   });
 
+  app.get("/api/getLastProduto", async (req, res) => {
+    const response = await produtos.getLastProduto();
+    console.log(response);
+    return res.json(response);
+  });
+
   //post produto route
-  app.post("/api/post", (req, res) => {
-    res.send(produtos.postProduto(req));
+  app.post("/api/postProduto", async (req, res) => {
+    res.send(await produtos.postProduto(req));
   });
 };

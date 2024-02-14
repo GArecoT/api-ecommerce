@@ -26,6 +26,19 @@ const getProdutos = async () => {
   return rows;
 };
 
+const getLastProduto = async () => {
+  const conn = await setConn();
+
+  // Use Connection to get contacts data
+  let rows = await conn.query(
+    "SELECT * FROM ecommerce.produtos ORDER BY product_id DESC LIMIT 1;",
+  );
+
+  //Print list of contacts
+  if (conn) conn.close();
+  return rows;
+};
+
 const postProduto = async (req) => {
   const conn = await setConn();
   await conn.query("use ecommerce");
@@ -36,8 +49,10 @@ const postProduto = async (req) => {
       req.body.image_dir +
       "')",
   );
-  let post = await conn.query(`SELECT * FROM ecommerce.produtos;`);
+  let post = await conn.query(
+    `SELECT * FROM ecommerce.produtos ORDER BY product_id DESC LIMIT 1`,
+  );
   return post;
 };
 
-module.exports = { getProdutos, postProduto };
+module.exports = { getProdutos, postProduto, getLastProduto };
