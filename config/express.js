@@ -11,5 +11,6 @@ module.exports = () => {
   // MIDDLEWARES
   app.use(bodyParser.json());
   require("../api/routes/produtos.ts")(app);
+  require("../api/routes/auth.ts")(app);
   return app;
 };
